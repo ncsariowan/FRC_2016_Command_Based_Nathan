@@ -24,18 +24,19 @@ public class DriveWithControllers extends Command {
     	
     	double steering = OI.XBOX.getRawAxis(4);
     	double throttle = -OI.XBOX.getRawAxis(1);
-    	    	
-    	if (steering <= Drivetrain.STEERING_DEADBAND) {
+    	 
+    	//TODO negative deadband
+    	if (steering <= Drivetrain.STEERING_DEADBAND && steering >= -Drivetrain.STEERING_DEADBAND) {
     		steering = 0;
     	}
-    	if (throttle <= Drivetrain.THROTTLE_DEADBAND) {
+    	if (throttle <= Drivetrain.THROTTLE_DEADBAND && throttle >= -Drivetrain.THROTTLE_DEADBAND) {
     		throttle = 0;
     	}
     	
     	double leftPWM;
     	double rightPWM;
     	
-    	if(!OI.XBOX.getRawButton(3)) { 
+    	if(!OI.XBOX.getRawButton(6)) { 
     		
 	    	leftPWM = throttle * (1 + steering);
 	    	rightPWM = throttle * (1 - steering);

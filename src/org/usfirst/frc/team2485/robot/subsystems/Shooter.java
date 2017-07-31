@@ -7,12 +7,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Shooter extends Subsystem {
     
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-
+	public static double RPS_LONG_SHOT = 95, RPS_BATTER_SHOT = 80;
+	
+	public static enum HoodPosition {
+		LOW_ANGLE, HIGH_ANGLE, STOWED
+	};
+	
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+
     }
 }
 

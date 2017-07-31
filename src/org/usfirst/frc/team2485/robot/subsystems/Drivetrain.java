@@ -7,8 +7,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Drivetrain extends Subsystem {
 
-	public static final double THROTTLE_DEADBAND = 0.1;
-	public static final double STEERING_DEADBAND = 0.1;
+	public static final double THROTTLE_DEADBAND = 0.1, STEERING_DEADBAND = 0.1;
 	
 	private final double NORMAL_SPEED_RATING = 0.8, FAST_SPEED_RATING = 1.0, SLOW_SPEED_RATING = 0.6;
 	
@@ -37,13 +36,13 @@ public class Drivetrain extends Subsystem {
 		leftOutput *= driveSpeed;
 		rightOutput *= driveSpeed;
 		
-		RobotMap.leftDrive.set(leftOutput);
-		RobotMap.rightDrive.set(rightOutput);
+		RobotMap.leftDriveWrapper.set(leftOutput);
+		RobotMap.rightDriveWrapper.set(rightOutput);
 	}
 	
 	public void emergencyStop() {
-		RobotMap.leftDrive.set(0);
-		RobotMap.rightDrive.set(0);
+		RobotMap.leftDriveWrapper.set(0);
+		RobotMap.rightDriveWrapper.set(0);
 	}
 	
 }

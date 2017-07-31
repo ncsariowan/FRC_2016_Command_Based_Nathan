@@ -1,8 +1,11 @@
 package org.usfirst.frc.team2485.robot;
 
-import org.usfirst.frc.team2485.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team2485.robot.subsystems.*;
 import org.usfirst.frc.team2485.robot.utils.SpeedControllerWrapper;
+import org.usfirst.frc.team2485.robot.utils.InvertedAbsoluteEncoder;
 
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.VictorSP;
@@ -25,22 +28,63 @@ public class RobotMap {
 	public static Encoder leftDriveEncoders;
 	public static Encoder rightDriveEncoders;
 	
-	public static SpeedControllerWrapper rightDrive;
-	public static SpeedControllerWrapper leftDrive;
+	public static SpeedControllerWrapper rightDriveWrapper;
+	public static SpeedControllerWrapper leftDriveWrapper;
+	
+	//IntakeRollers
+	public static IntakeRollers intakeRollers;
+	
+	public static VictorSP rollersVictorSP; 
+	public static VictorSP lateralRollersVictorSP;
+	public static SpeedControllerWrapper rollersWrapper;
+	public static SpeedControllerWrapper lateralRollersWrapper;
+	
+	//IntakeArm
+	public static IntakeArm intakearm;
+	public static VictorSP intakeArmVictorSP;
+	public static SpeedControllerWrapper intakeArmWrapper;
+	public static InvertedAbsoluteEncoder intakeArmEncoder;
+	
+	//Shooter
+	public static CANTalon[] shooterCANs;
+	
+	public static SpeedControllerWrapper shooterWrapper;
 	
 	public static void init() {
 		
-		//Drive train
+		//DriveTrain
 		drivetrain = new Drivetrain();
-
+		
+			//port, port, SIM
 		rightDriveVictorSPs = new VictorSP[] { new VictorSP(5), new VictorSP(6), new VictorSP(7) };
 		leftDriveVictorSPs = new VictorSP[] { new VictorSP(2), new VictorSP(3), new VictorSP(4) };
 		
-		rightDrive = new SpeedControllerWrapper(rightDriveVictorSPs);
-		leftDrive = new SpeedControllerWrapper(leftDriveVictorSPs);
+		rightDriveWrapper = new SpeedControllerWrapper(rightDriveVictorSPs);
+		leftDriveWrapper = new SpeedControllerWrapper(leftDriveVictorSPs);
 		
 		rightDriveEncoders = new Encoder(4, 5);
 		leftDriveEncoders = new Encoder(2, 3);
+		
+		//IntakeRollers
+		rollersVictorSP = new VictorSP(8);
+		lateralRollersVictorSP = new VictorSP(9);
+		
+		rollersWrapper = new SpeedControllerWrapper(rollersVictorSP);
+		lateralRollersWrapper = new SpeedControllerWrapper(lateralRollersVictorSP);
+		lateralRollersVictorSP.setInverted(true);
+		
+		//IntakeArm
+		intakearm = new IntakeArm();
+		
+		intakeArmVictorSP = new VictorSP(1);
+		intakeArmWrapper = new SpeedControllerWrapper(intakeArmVictorSP);
+		intakeArmEncoder = new InvertedAbsoluteEncoder(new AnalogPotentiometer(0));
+		
+		//Shooter
+		shooterCANs = new CANTalon[] { new CANTalon(2), new CANTalon(3) };
+		
+		shooterWrapper = new SpeedControllerWrapper(shooterCANs);
+		
 		
 	}
 	

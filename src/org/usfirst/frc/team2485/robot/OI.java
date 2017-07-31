@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team2485.robot.commands.DriveWithControllers;
+import org.usfirst.frc.team2485.robot.commands.RollersOn;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -16,6 +17,8 @@ public class OI {
 	public static Joystick Joystick;
 	
 	public static JoystickButton XBOX_X;
+	public static JoystickButton XBOX_LEFT_BUMPER;
+	public static JoystickButton XBOX_RIGHT_BUMPER;
 	
 	public static void init() {
 		
@@ -23,6 +26,14 @@ public class OI {
 		Joystick = new Joystick(1);
 		
 		XBOX_X = new JoystickButton(XBOX, 3);
+		XBOX_LEFT_BUMPER = new JoystickButton(XBOX, 5);
+		XBOX_RIGHT_BUMPER = new JoystickButton(XBOX, 6);
+		
+		XBOX_LEFT_BUMPER.whenPressed(new RollersOn(true));
+		XBOX_LEFT_BUMPER.whenReleased(new RollersOn(false));
+		
+		
+		
 		
 	}
 	
