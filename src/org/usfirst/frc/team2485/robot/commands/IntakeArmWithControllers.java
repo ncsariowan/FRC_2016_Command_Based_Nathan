@@ -21,15 +21,19 @@ public class IntakeArmWithControllers extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double pwm;
     	
-    	pwm = OI.Joystick.getRawAxis(1);
+    	double pwmLeft = OI.XBOX.getRawAxis(2);
+    	double pwmRight = OI.XBOX.getRawAxis(3);
     	
-    	if (pwm <= IntakeArm.ARM_DEADBAND && pwm >= -IntakeArm.ARM_DEADBAND) {
-			pwm = 0;
+    	if (pwmLeft <= IntakeArm.ARM_DEADBAND && pwmLeft >= -IntakeArm.ARM_DEADBAND) {
+    		pwmLeft = 0;
+		}
+    	if (pwmRight <= IntakeArm.ARM_DEADBAND && pwmRight >= -IntakeArm.ARM_DEADBAND) {
+    		pwmRight = 0;
 		}
     	
-    	RobotMap.intakearm.armByManual(pwm);
+    	
+    	RobotMap.intakearm.armByManual(pwmLeft, pwmRight);
     }
 
     // Make this return true when this Command no longer needs to run execute()

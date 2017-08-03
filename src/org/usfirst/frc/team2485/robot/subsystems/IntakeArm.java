@@ -19,10 +19,11 @@ public class IntakeArm extends Subsystem {
 	public void initDefaultCommand() {
 	}
 	
-	public void armByManual(double pwm) {
+	public void armByManual(double pwmFoward, double pwmBack) {
 		double armPosition = RobotMap.intakeArmEncoder.get();
 		boolean disableDownwards = false;
 		boolean disableUpwards = false;
+		double pwm = pwmFoward-pwmBack;
 		
 		if (armPosition < FLOOR_POSITION + 0.1) {
 			disableDownwards = true;

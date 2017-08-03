@@ -12,33 +12,35 @@ import org.usfirst.frc.team2485.robot.subsystems.Drivetrain;
 /**
  *
  */
-public class DriveWithControllers extends Command {
+public class QuickTurn extends Command {
 	
-    public DriveWithControllers() {
+	boolean button;
+    public QuickTurn(boolean buttonInput) {
         requires(RobotMap.drivetrain);
         setInterruptible(true);
-        
+        button = buttonInput;
     }
     
     protected void execute() {
-    	
-    	double steering = OI.XBOX.getRawAxis(4);
-    	double throttle = -OI.XBOX.getRawAxis(1);
-    	 
-    	if (steering <= Drivetrain.STEERING_DEADBAND && steering >= -Drivetrain.STEERING_DEADBAND) {
-    		steering = 0;
-    	}
-    	if (throttle <= Drivetrain.THROTTLE_DEADBAND && throttle >= -Drivetrain.THROTTLE_DEADBAND) {
-    		throttle = 0;
-    	}
-    	
-    	double leftPWM;
-    	double rightPWM;
-    	
-	   	leftPWM = throttle * (1 + steering);
-	   	rightPWM = throttle * (1 - steering);
+    	if(button) {
+	    	double steering = OI.XBOX.getRawAxis(4);
+	    	double throttle = -OI.XBOX.getRawAxis(1);
+	    	 
+	    	if (steering <= Drivetrain.STEERING_DEADBAND && steering >= -Drivetrain.STEERING_DEADBAND) {
+	    		steering = 0;
+	    	}
+	    	if (throttle <= Drivetrain.THROTTLE_DEADBAND && throttle >= -Drivetrain.THROTTLE_DEADBAND) {
+	    		throttle = 0;
+	    	}
 	    	
-    	RobotMap.drivetrain.setLeftRight(leftPWM, rightPWM);
+	    	double leftPWM;
+	    	double rightPWM;
+	    	
+		   	leftPWM = (1 + steering);
+		   	rightPWM = (1 - steering);
+		    	
+	    	RobotMap.drivetrain.setLeftRight(leftPWM, rightPWM);
+    	}
     }
 
     protected boolean isFinished() {

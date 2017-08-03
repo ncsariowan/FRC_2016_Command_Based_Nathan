@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team2485.robot.commands.DriveWithControllers;
+import org.usfirst.frc.team2485.robot.commands.QuickTurn;
 import org.usfirst.frc.team2485.robot.commands.RollersOn;
 
 /**
@@ -29,8 +30,11 @@ public class OI {
 		XBOX_LEFT_BUMPER = new JoystickButton(XBOX, 5);
 		XBOX_RIGHT_BUMPER = new JoystickButton(XBOX, 6);
 		
-		XBOX_LEFT_BUMPER.whenPressed(new RollersOn(true));
-		XBOX_LEFT_BUMPER.whenReleased(new RollersOn(false));
+		XBOX_LEFT_BUMPER.whenPressed(new QuickTurn(true));
+		XBOX_LEFT_BUMPER.whenPressed(new QuickTurn(false));
+		
+		XBOX_RIGHT_BUMPER.whenPressed(new RollersOn(true));
+		XBOX_RIGHT_BUMPER.whenReleased(new RollersOn(false));
 		
 		
 		
