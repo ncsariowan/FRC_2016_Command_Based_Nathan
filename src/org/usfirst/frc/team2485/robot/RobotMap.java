@@ -7,6 +7,7 @@ import org.usfirst.frc.team2485.robot.utils.InvertedAbsoluteEncoder;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.VictorSP;
 
@@ -46,9 +47,14 @@ public class RobotMap {
 	public static InvertedAbsoluteEncoder intakeArmEncoder;
 	
 	//Shooter
+	public static Shooter shooter;
 	public static CANTalon[] shooterCANs;
-	
 	public static SpeedControllerWrapper shooterWrapper;
+	
+	//Hood
+	public static Hood hood;
+	public static Solenoid lowerSolenoid; 
+	public static Solenoid upperSolenoid;
 	
 	public static void init() {
 		
@@ -84,6 +90,9 @@ public class RobotMap {
 		shooterCANs = new CANTalon[] { new CANTalon(2), new CANTalon(3) };
 		
 		shooterWrapper = new SpeedControllerWrapper(shooterCANs);
+		
+		//Hood
+		
 		
 		
 	}

@@ -8,20 +8,24 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RollersOn extends Command {
+public class IntakeRollersOn extends Command {
 
-	public static boolean rollersButton;
-    public RollersOn(boolean rollers) {
+	public static boolean rollers;
+    public IntakeRollersOn(boolean rollersInput) {
         requires(RobotMap.intakeRollers);
         setInterruptible(true);
-        rollersButton = rollers;
+        rollers = rollersInput;
     }
 
     protected void initialize() {
     }
 
     protected void execute() {
-    	IntakeRollers.startRollers(rollersButton);
+    	if (rollers) {
+    		IntakeRollers.startRollers();
+    	} else {
+    		IntakeRollers.stopRollers();
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

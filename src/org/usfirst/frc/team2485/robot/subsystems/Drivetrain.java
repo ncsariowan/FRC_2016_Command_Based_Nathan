@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2485.robot.subsystems;
 
 import org.usfirst.frc.team2485.robot.RobotMap;
-import org.usfirst.frc.team2485.robot.commands.DriveWithControllers;
+import org.usfirst.frc.team2485.robot.commands.DrivetrainWithControllers;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -19,7 +19,7 @@ public class Drivetrain extends Subsystem {
     }
     
 	public void initDefaultCommand() {
-    	new DriveWithControllers();
+    	new DrivetrainWithControllers();
     }
 	
 	public void reset(){

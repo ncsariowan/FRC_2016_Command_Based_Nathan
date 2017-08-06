@@ -9,7 +9,9 @@ public class IntakeArm extends Subsystem {
 	public static final double ARM_DEADBAND = 0.01;
 
 	public static double FLOOR_POSITION = 0.122;
-
+	
+	public static double SLOW_RATING = 0.1, NORMAL_RATING = 0.5;
+	
 	public static double LOW_NO_INTAKE_POSITION = (FLOOR_POSITION + 0.06) % 1;
 	public static double INTAKE_POSITION = (FLOOR_POSITION + 0.09) % 1;
 	public static double PORTCULLIS_POSITION = (FLOOR_POSITION + 0.261) % 1;
@@ -18,18 +20,20 @@ public class IntakeArm extends Subsystem {
 
 	public void initDefaultCommand() {
 	}
-	
-	public void armByManual(double pwmFoward, double pwmBack) {
+
+	public void armByManual(double pwm) {
 		double armPosition = RobotMap.intakeArmEncoder.get();
 		boolean disableDownwards = false;
 		boolean disableUpwards = false;
-		double pwm = pwmFoward-pwmBack;
 		
+		//Limits arm position 
 		if (armPosition < FLOOR_POSITION + 0.1) {
 			disableDownwards = true;
 		} else if (armPosition > FULL_UP_POSITION - 0.1) {
 			disableUpwards = true;
 		}
+		
+		pwm *= NORMAL_RATING; 
 		
 		if (pwm < 0) {
 			if(!disableDownwards) {

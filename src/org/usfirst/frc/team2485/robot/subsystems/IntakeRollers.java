@@ -15,32 +15,20 @@ public class IntakeRollers extends Subsystem {
 		
 	}
 	
-	public static void startRollers(boolean button) {
+	public static void startRollers() {
 		
 		if (rollersOn = false) {
-			if (button == true) {
 				RobotMap.rollersWrapper.set(0.5);
 				RobotMap.lateralRollersWrapper.set(0.5);
 				rollersOn = true;
-			} else {
-				RobotMap.rollersWrapper.set(0);
-				RobotMap.lateralRollersWrapper.set(0);
-				rollersOn = false;
-			}
 		}
 	}
 	
-	public static void reverseRollers(boolean button) {
+	public static void reverseRollers() {
 		if (rollersOn = false) {
-			if (button == true) {
 				RobotMap.rollersWrapper.set(-0.5);
 				RobotMap.lateralRollersWrapper.set(-0.5);
 				rollersOn = true;
-			} else {
-				RobotMap.rollersWrapper.set(0);
-				RobotMap.lateralRollersWrapper.set(0);
-				rollersOn = false;
-			}
 		}
 	}
 	

@@ -4,9 +4,9 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-import org.usfirst.frc.team2485.robot.commands.DriveWithControllers;
+import org.usfirst.frc.team2485.robot.commands.DrivetrainWithControllers;
 import org.usfirst.frc.team2485.robot.commands.QuickTurn;
-import org.usfirst.frc.team2485.robot.commands.RollersOn;
+import org.usfirst.frc.team2485.robot.commands.IntakeRollersOn;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -14,12 +14,31 @@ import org.usfirst.frc.team2485.robot.commands.RollersOn;
  */
 public class OI {
 	
+	public static final int XBOX_A_PORT = 1;
+	public static final int XBOX_B_PORT = 2;
+	public static final int XBOX_X_PORT = 3;
+	public static final int XBOX_Y_PORT = 4;
+	public static final int XBOX_LBUMPER_PORT = 5;
+	public static final int XBOX_RBUMPER_PORT = 6;  
+	public static final int XBOX_START_PORT = 9;  
+	public static final int XBOX_BACK_PORT = 10;  
+	public static final int XBOX_XBOX_PORT = 11;  
+	public static final int XBOX_UP_PORT = 12;  
+	public static final int XBOX_DOWN_PORT = 13;  
+	public static final int XBOX_LEFT_PORT = 14;
+	public static final int XBOX_RIGHT_PORT = 15;
+	
+	public static final int XBOX_LJOYSTICK_PORT = 1;
+	public static final int XBOX_LTRIGGER_PORT = 2;
+	public static final int XBOX_RTRIGGER_PORT = 3;
+	public static final int XBOX_RJOYSTICK_PORT = 4;
+	    
 	public static Joystick XBOX;
 	public static Joystick Joystick;
 	
 	public static JoystickButton XBOX_X;
-	public static JoystickButton XBOX_LEFT_BUMPER;
-	public static JoystickButton XBOX_RIGHT_BUMPER;
+	public static JoystickButton XBOX_LBUMPER;
+	public static JoystickButton XBOX_RBUMPER;
 	
 	public static void init() {
 		
@@ -27,45 +46,16 @@ public class OI {
 		Joystick = new Joystick(1);
 		
 		XBOX_X = new JoystickButton(XBOX, 3);
-		XBOX_LEFT_BUMPER = new JoystickButton(XBOX, 5);
-		XBOX_RIGHT_BUMPER = new JoystickButton(XBOX, 6);
+		XBOX_LBUMPER = new JoystickButton(XBOX, 5);
+		XBOX_RBUMPER = new JoystickButton(XBOX, 6);
 		
-		XBOX_LEFT_BUMPER.whenPressed(new QuickTurn(true));
-		XBOX_LEFT_BUMPER.whenPressed(new QuickTurn(false));
+		////FUNCTIONS
 		
-		XBOX_RIGHT_BUMPER.whenPressed(new RollersOn(true));
-		XBOX_RIGHT_BUMPER.whenReleased(new RollersOn(false));
-		
-		
-		
+//		XBOX_LBUMPER.whenPressed(new QuickTurn(true));
+//		XBOX_LBUMPER.whenPressed(new QuickTurn(false)); // ^ just as a reminder. See DriveWithControllers.	
+		XBOX_RBUMPER.whenPressed(new IntakeRollersOn(true));
+		XBOX_RBUMPER.whenReleased(new IntakeRollersOn(false));
 		
 	}
-	
-    //// CREATING BUTTONS
-    // One type of button is a joystick button which is any button on a joystick.
-    // You create one by telling it which joystick it's on and which button
-    // number it is.
-    // Joystick stick = new Joystick(port);
-    // Button button = new JoystickButton(stick, buttonNumber);
-    
-    // There are a few additional built in buttons you can use. Additionally,
-    // by subclassing Button you can create custom triggers and bind those to
-    // commands the same as any other Button.
-    
-    //// TRIGGERING COMMANDS WITH BUTTONS
-    // Once you have a button, it's trivial to bind it to a button in one of
-    // three ways:
-    
-    // Start the command when the button is pressed and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenPressed(new ExampleCommand());
-    
-    // Run the command while the button is being held down and interrupt it once
-    // the button is released.
-    // button.whileHeld(new ExampleCommand());
-    
-    // Start the command when the button is released  and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenReleased(new ExampleCommand());
 }
 

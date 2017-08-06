@@ -12,9 +12,9 @@ import org.usfirst.frc.team2485.robot.subsystems.Drivetrain;
 /**
  *
  */
-public class DriveWithControllers extends Command {
+public class DrivetrainWithControllers extends Command {
 	
-    public DriveWithControllers() {
+    public DrivetrainWithControllers() {
         requires(RobotMap.drivetrain);
         setInterruptible(true);
         
@@ -22,8 +22,8 @@ public class DriveWithControllers extends Command {
     
     protected void execute() {
     	
-    	double steering = OI.XBOX.getRawAxis(4);
-    	double throttle = -OI.XBOX.getRawAxis(1);
+    	double steering = OI.XBOX.getRawAxis(OI.XBOX_RJOYSTICK_PORT);
+    	double throttle = -OI.XBOX.getRawAxis(OI.XBOX_LJOYSTICK_PORT);
     	 
     	if (steering <= Drivetrain.STEERING_DEADBAND && steering >= -Drivetrain.STEERING_DEADBAND) {
     		steering = 0;
@@ -35,8 +35,15 @@ public class DriveWithControllers extends Command {
     	double leftPWM;
     	double rightPWM;
     	
-	   	leftPWM = throttle * (1 + steering);
-	   	rightPWM = throttle * (1 - steering);
+    	boolean quickTurn = OI.XBOX.getRawButton(OI.XBOX_LBUMPER_PORT);
+    	
+    	if(!quickTurn) {
+		   	leftPWM = throttle * (1 + steering);
+		   	rightPWM = throttle * (1 - steering);
+    	} else {
+    		leftPWM = (1 + steering);
+		   	rightPWM = (1 - steering);
+    	}
 	    	
     	RobotMap.drivetrain.setLeftRight(leftPWM, rightPWM);
     }
