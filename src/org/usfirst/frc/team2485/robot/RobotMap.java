@@ -50,11 +50,17 @@ public class RobotMap {
 	public static Shooter shooter;
 	public static CANTalon[] shooterCANs;
 	public static SpeedControllerWrapper shooterWrapper;
+	public static Encoder shooterEncoder;
 	
 	//Hood
 	public static Hood hood;
 	public static Solenoid lowerSolenoid; 
 	public static Solenoid upperSolenoid;
+	
+	//BoulderStager
+	public static BoulderStager boulderStager;
+	public static Solenoid boulderStagerSolenoid1;
+	public static Solenoid boulderStagerSolenoid2;
 	
 	public static void init() {
 		
@@ -88,10 +94,17 @@ public class RobotMap {
 		
 		//Shooter
 		shooterCANs = new CANTalon[] { new CANTalon(2), new CANTalon(3) };
-		
 		shooterWrapper = new SpeedControllerWrapper(shooterCANs);
 		
 		//Hood
+		hood = new Hood();
+		lowerSolenoid = new Solenoid(4);
+		upperSolenoid = new Solenoid(5);
+		
+		//BoulderStager
+		boulderStager = new BoulderStager();
+		boulderStagerSolenoid1 = new Solenoid(6);
+		boulderStagerSolenoid2 = new Solenoid(7);
 		
 		
 		

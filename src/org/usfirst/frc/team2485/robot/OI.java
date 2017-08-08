@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team2485.robot.commands.DrivetrainWithControllers;
 import org.usfirst.frc.team2485.robot.commands.QuickTurn;
+import org.usfirst.frc.team2485.robot.commands.SetHood;
+import org.usfirst.frc.team2485.robot.subsystems.Hood.HoodPosition;
 import org.usfirst.frc.team2485.robot.commands.IntakeRollersOn;
 
 /**
@@ -36,6 +38,10 @@ public class OI {
 	public static Joystick XBOX;
 	public static Joystick Joystick;
 	
+	public static JoystickButton XBOX_UP;
+	public static JoystickButton XBOX_DOWN;
+	public static JoystickButton XBOX_LEFT;
+	public static JoystickButton XBOX_RIGHT;
 	public static JoystickButton XBOX_X;
 	public static JoystickButton XBOX_LBUMPER;
 	public static JoystickButton XBOX_RBUMPER;
@@ -45,14 +51,25 @@ public class OI {
 		XBOX = new Joystick(0);
 		Joystick = new Joystick(1);
 		
-		XBOX_X = new JoystickButton(XBOX, 3);
+		XBOX_UP = new JoystickButton(XBOX, XBOX_UP_PORT);
+		XBOX_DOWN = new JoystickButton(XBOX, XBOX_DOWN_PORT);
+		XBOX_LEFT = new JoystickButton(XBOX, XBOX_LEFT_PORT);
+		XBOX_RIGHT = new JoystickButton(XBOX, XBOX_RIGHT_PORT);
+		
+		XBOX_X = new JoystickButton(XBOX, XBOX_X_PORT);
+		
 		XBOX_LBUMPER = new JoystickButton(XBOX, 5);
 		XBOX_RBUMPER = new JoystickButton(XBOX, 6);
 		
 		////FUNCTIONS
 		
+		XBOX_UP.whenPressed(new SetHood(HoodPosition.HIGH_ANGLE));
+		XBOX_DOWN.whenPressed(new SetHood(HoodPosition.STOWED));
+		XBOX_LEFT.whenPressed(new SetHood(HoodPosition.LOW_ANGLE));
+		
 //		XBOX_LBUMPER.whenPressed(new QuickTurn(true));
-//		XBOX_LBUMPER.whenPressed(new QuickTurn(false)); // ^ just as a reminder. See DriveWithControllers.	
+//		XBOX_LBUMPER.whenPressed(new QuickTurn(false)); // just as a reminder. See DriveWithControllers.	
+		
 		XBOX_RBUMPER.whenPressed(new IntakeRollersOn(true));
 		XBOX_RBUMPER.whenReleased(new IntakeRollersOn(false));
 		

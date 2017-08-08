@@ -13,9 +13,10 @@ public class Hood extends Subsystem {
 	};
 	
 	private static final HoodPosition defaultHoodPosition = HoodPosition.HIGH_ANGLE;
-	private HoodPosition currentHoodPosition;
+	private static HoodPosition currentHoodPosition;
 	
 	public Hood() {
+		setHoodPosition(defaultHoodPosition);
 		currentHoodPosition = defaultHoodPosition;
 	}
 	
@@ -23,7 +24,7 @@ public class Hood extends Subsystem {
        
     }
     
-    public void setHoodPosition(final HoodPosition newHoodPosition) {
+    public static void setHoodPosition(HoodPosition newHoodPosition) {
     	
     	if (newHoodPosition == HoodPosition.LOW_ANGLE) {
     		
