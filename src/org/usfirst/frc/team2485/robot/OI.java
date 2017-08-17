@@ -5,8 +5,9 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team2485.robot.commands.DrivetrainWithControllers;
-import org.usfirst.frc.team2485.robot.commands.QuickTurn;
 import org.usfirst.frc.team2485.robot.commands.SetHood;
+import org.usfirst.frc.team2485.robot.commands.setBoulderStager;
+import org.usfirst.frc.team2485.robot.subsystems.BoulderStager.StagerPosition;
 import org.usfirst.frc.team2485.robot.subsystems.Hood.HoodPosition;
 import org.usfirst.frc.team2485.robot.commands.IntakeRollersOn;
 
@@ -42,10 +43,19 @@ public class OI {
 	public static JoystickButton XBOX_DOWN;
 	public static JoystickButton XBOX_LEFT;
 	public static JoystickButton XBOX_RIGHT;
+	public static JoystickButton XBOX_A;
+	public static JoystickButton XBOX_B;
 	public static JoystickButton XBOX_X;
+	public static JoystickButton XBOX_Y;
 	public static JoystickButton XBOX_LBUMPER;
 	public static JoystickButton XBOX_RBUMPER;
+	public static JoystickButton XBOX_XBOX;
 	
+	/**
+	 *  For joysticks:
+	 *  @see DrivetrainWithControllers
+	 *  @see IntakeArmWithControllers
+	 */
 	public static void init() {
 		
 		XBOX = new Joystick(0);
@@ -56,10 +66,15 @@ public class OI {
 		XBOX_LEFT = new JoystickButton(XBOX, XBOX_LEFT_PORT);
 		XBOX_RIGHT = new JoystickButton(XBOX, XBOX_RIGHT_PORT);
 		
+		XBOX_A = new JoystickButton(XBOX, XBOX_A_PORT);
+		XBOX_B = new JoystickButton(XBOX, XBOX_B_PORT);
 		XBOX_X = new JoystickButton(XBOX, XBOX_X_PORT);
+		XBOX_Y = new JoystickButton(XBOX, XBOX_Y_PORT);
 		
-		XBOX_LBUMPER = new JoystickButton(XBOX, 5);
-		XBOX_RBUMPER = new JoystickButton(XBOX, 6);
+		XBOX_LBUMPER = new JoystickButton(XBOX, XBOX_LBUMPER_PORT);
+		XBOX_RBUMPER = new JoystickButton(XBOX, XBOX_RBUMPER_PORT);
+		
+		XBOX_XBOX = new JoystickButton(XBOX, XBOX_XBOX_PORT);
 		
 		////FUNCTIONS
 		
@@ -67,11 +82,17 @@ public class OI {
 		XBOX_DOWN.whenPressed(new SetHood(HoodPosition.STOWED));
 		XBOX_LEFT.whenPressed(new SetHood(HoodPosition.LOW_ANGLE));
 		
-//		XBOX_LBUMPER.whenPressed(new QuickTurn(true));
-//		XBOX_LBUMPER.whenPressed(new QuickTurn(false)); // just as a reminder. See DriveWithControllers.	
+		XBOX_A.whenPressed(new setBoulderStager(StagerPosition.INTAKE));
+		XBOX_B.whenPressed(new setBoulderStager(StagerPosition.NEUTRAL));
+		XBOX_XBOX.whenPressed(new setBoulderStager(StagerPosition.SHOOTING));
 		
-		XBOX_RBUMPER.whenPressed(new IntakeRollersOn(true));
-		XBOX_RBUMPER.whenReleased(new IntakeRollersOn(false));
+//		XBOX_RBUMPER.whenPressed(new QuickTurn(true));
+//		XBOX_RBUMPER.whenPressed(new QuickTurn(false)); // just as a reminder. See DriveWithControllers.	
+
+		XBOX_LBUMPER.whenPressed(new IntakeRollersOn(true));
+		XBOX_LBUMPER.whenReleased(new IntakeRollersOn(false));
+		
+		 //make start and stop for different spin up shooters
 		
 	}
 }

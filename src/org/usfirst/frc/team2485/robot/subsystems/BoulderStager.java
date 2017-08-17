@@ -27,13 +27,16 @@ public class BoulderStager extends Subsystem {
     	if (positionInput == StagerPosition.INTAKE) {
     		RobotMap.boulderStagerSolenoid1.set(false);
     		RobotMap.boulderStagerSolenoid2.set(true);
+    		
     	} else if (positionInput == StagerPosition.SHOOTING) {
     		RobotMap.boulderStagerSolenoid1.set(true);
     		RobotMap.boulderStagerSolenoid1.set(false);
+    		
     	} else if (positionInput == StagerPosition.NEUTRAL){
     		RobotMap.boulderStagerSolenoid1.set(false);
     		RobotMap.boulderStagerSolenoid1.set(false);
     	}
+    	
     	currentPosition = positionInput;
     }
     

@@ -78,6 +78,13 @@ public class Hood extends Subsystem {
 		return currentHoodPosition;
 	}
 
+    public boolean isReadyToFire() {
+    	if (currentHoodPosition != HoodPosition.STOWED) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
     
     
  }

@@ -128,5 +128,11 @@ public class SpeedControllerWrapper implements SpeedController {
 			sc.stopMotor();
 		}
 	}
+	
+	@Override
+	public void set(double speed, byte syncGroup) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
