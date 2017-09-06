@@ -129,7 +129,6 @@ public class SpeedControllerWrapper implements SpeedController {
 		}
 	}
 	
-	@Override
 	public void set(double speed, byte syncGroup) {
 		// TODO Auto-generated method stub
 		
