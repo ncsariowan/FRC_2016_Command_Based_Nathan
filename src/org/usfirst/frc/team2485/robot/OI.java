@@ -31,11 +31,13 @@ public class OI {
 	public static final int XBOX_LEFT_PORT = 14;
 	public static final int XBOX_RIGHT_PORT = 15;
 	
-	public static final int XBOX_LJOYSTICK_PORT = 1;
+	public static final int XBOX_LXJOSYSTICK_PORT = 0;
+	public static final int XBOX_LYJOYSTICK_PORT = 1;
 	public static final int XBOX_LTRIGGER_PORT = 2;
 	public static final int XBOX_RTRIGGER_PORT = 3;
-	public static final int XBOX_RJOYSTICK_PORT = 4;
-	    
+	public static final int XBOX_RXJOYSTICK_PORT = 4;
+	public static final int XBOX_RYJOYSTICK_PORT = 5;
+	
 	public static Joystick XBOX;
 	public static Joystick Joystick;
 	
@@ -51,8 +53,22 @@ public class OI {
 	public static JoystickButton XBOX_RBUMPER;
 	public static JoystickButton XBOX_XBOX;
 	
+	public static JoystickButton Joystick_1;
+	public static JoystickButton Joystick_2;
+	public static JoystickButton Joystick_3;
+	public static JoystickButton Joystick_4;
+	public static JoystickButton Joystick_5;
+	public static JoystickButton Joystick_6;
+	public static JoystickButton Joystick_7;
+	public static JoystickButton Joystick_8;
+	public static JoystickButton Joystick_9;
+	public static JoystickButton Joystick_10;
+	public static JoystickButton Joystick_11;
+	public static JoystickButton Joystick_12;
+	
 	/**
-	 *  For joysticks:
+	 *  For joysticks:4
+	 *  
 	 *  @see DrivetrainWithControllers
 	 *  @see IntakeArmWithControllers
 	 */
@@ -78,13 +94,13 @@ public class OI {
 		
 		////FUNCTIONS
 		
-		XBOX_UP.whenPressed(new SetHood(HoodPosition.HIGH_ANGLE));
-		XBOX_DOWN.whenPressed(new SetHood(HoodPosition.STOWED));
-		XBOX_LEFT.whenPressed(new SetHood(HoodPosition.LOW_ANGLE));
+		Joystick_5.whenPressed(new SetHood(HoodPosition.HIGH_ANGLE));
+		Joystick_2.whenPressed(new SetHood(HoodPosition.STOWED));
+		Joystick_3.whenPressed(new SetHood(HoodPosition.LOW_ANGLE));
 		
-		XBOX_A.whenPressed(new setBoulderStager(StagerPosition.INTAKE));
-		XBOX_B.whenPressed(new setBoulderStager(StagerPosition.NEUTRAL));
-		XBOX_XBOX.whenPressed(new setBoulderStager(StagerPosition.SHOOTING));
+		Joystick_6.whenPressed(new setBoulderStager(StagerPosition.INTAKE));
+		Joystick_4.whenPressed(new setBoulderStager(StagerPosition.NEUTRAL));
+		Joystick_1.whenPressed(new setBoulderStager(StagerPosition.SHOOTING));
 		
 //		XBOX_RBUMPER.whenPressed(new QuickTurn(true));
 //		XBOX_RBUMPER.whenPressed(new QuickTurn(false)); // just as a reminder. See DriveWithControllers.	

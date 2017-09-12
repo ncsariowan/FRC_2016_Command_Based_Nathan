@@ -22,13 +22,13 @@ public class DrivetrainWithControllers extends Command {
     
     protected void execute() {
     	
-    	double steering = OI.XBOX.getRawAxis(OI.XBOX_RJOYSTICK_PORT);
-    	double throttle = -OI.XBOX.getRawAxis(OI.XBOX_LJOYSTICK_PORT);
+    	double steering = OI.XBOX.getRawAxis(OI.XBOX_LYJOYSTICK_PORT);
+    	double throttle = -OI.XBOX.getRawAxis(OI.XBOX_RXJOYSTICK_PORT);
     	 
-    	if (steering <= Drivetrain.STEERING_DEADBAND && steering >= -Drivetrain.STEERING_DEADBAND) {
+    	if (Math.abs(steering) <= Drivetrain.STEERING_DEADBAND) {
     		steering = 0;
     	}
-    	if (throttle <= Drivetrain.THROTTLE_DEADBAND && throttle >= -Drivetrain.THROTTLE_DEADBAND) {
+    	if (Math.abs(throttle) <= Drivetrain.THROTTLE_DEADBAND) {
     		throttle = 0;
     	}
     	

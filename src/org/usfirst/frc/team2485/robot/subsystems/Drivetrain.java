@@ -19,7 +19,7 @@ public class Drivetrain extends Subsystem {
     }
     
 	public void initDefaultCommand() {
-    	new DrivetrainWithControllers();
+    	setDefaultCommand(new DrivetrainWithControllers());
     }
 	
 	public void reset(){

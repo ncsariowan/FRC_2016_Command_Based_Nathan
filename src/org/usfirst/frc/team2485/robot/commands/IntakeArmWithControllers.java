@@ -13,7 +13,7 @@ public class IntakeArmWithControllers extends Command {
 
     public IntakeArmWithControllers() {
     	requires(RobotMap.intakearm);
-    	setInterruptible(false);
+    	setInterruptible(true);
     }
 
     protected void initialize() {
@@ -22,17 +22,11 @@ public class IntakeArmWithControllers extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	double pwmLeft = OI.XBOX.getRawAxis(OI.XBOX_LTRIGGER_PORT);
-    	double pwmRight = OI.XBOX.getRawAxis(OI.XBOX_RTRIGGER_PORT);
+    	double pwm = OI.Joystick.getRawAxis(0);
     	
-    	if (pwmLeft <= IntakeArm.ARM_DEADBAND && pwmLeft >= -IntakeArm.ARM_DEADBAND) {
-    		pwmLeft = 0;
+    	if (pwm >= IntakeArm.ARM_DEADBAND && pwm <= -IntakeArm.ARM_DEADBAND) {
+    		pwm = 0;
 		}
-    	if (pwmRight <= IntakeArm.ARM_DEADBAND && pwmRight >= -IntakeArm.ARM_DEADBAND) {
-    		pwmRight = 0;
-		}
-    	
-    	double pwm = pwmRight - pwmLeft;
     	
     	RobotMap.intakearm.armByManual(pwm);
     }
