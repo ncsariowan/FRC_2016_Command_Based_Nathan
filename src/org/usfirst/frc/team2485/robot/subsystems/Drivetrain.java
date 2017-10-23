@@ -5,6 +5,10 @@ import org.usfirst.frc.team2485.robot.commands.DrivetrainWithControllers;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+/**
+ * Takes outputs of Command and sets Wrappers
+ *
+ */
 public class Drivetrain extends Subsystem {
 
 	public static final double THROTTLE_DEADBAND = 0.1, STEERING_DEADBAND = 0.1;

@@ -35,7 +35,7 @@ public class DrivetrainWithControllers extends Command {
     	double leftPWM;
     	double rightPWM;
     	
-    	boolean quickTurn = OI.XBOX.getRawButton(OI.XBOX_RBUMPER_PORT);
+    	boolean quickTurn = OI.XBOX.getRawButton(OI.XBOX_LBUMPER_PORT);
     	
     	if(!quickTurn) {
 		   	leftPWM = throttle * (1 + steering);

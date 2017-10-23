@@ -12,7 +12,7 @@ public class IntakeArmManual extends Command {
 	private double pwm;
 
     public IntakeArmManual(double pwm) {
-    	requires(RobotMap.intakearm);
+    	requires(RobotMap.intakeArm);
     	setInterruptible(false);
     	this.pwm = pwm;
     }
@@ -21,7 +21,7 @@ public class IntakeArmManual extends Command {
     }
 
     protected void execute() {
-    	RobotMap.intakearm.armByManual(pwm);
+    	RobotMap.intakeArm.armByManual(pwm);
     }
 
     // Make this return true when this Command no longer needs to run execute()

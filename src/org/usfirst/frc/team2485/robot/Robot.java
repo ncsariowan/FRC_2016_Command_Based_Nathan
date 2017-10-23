@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team2485.robot.commands.DrivetrainWithControllers;
 import org.usfirst.frc.team2485.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team2485.robot.utils.ConstantsIO;
+
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -27,8 +29,9 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-//		ConstantsIO.init();
+		ConstantsIO.init();
 		RobotMap.init();
+		RobotMap.updateConstants();
     }
 	
 	/**
@@ -54,7 +57,8 @@ public class Robot extends IterativeRobot {
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
     public void autonomousInit() {
-       
+    	ConstantsIO.init();
+		RobotMap.updateConstants();
         
 		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
 		switch(autoSelected) {
@@ -79,6 +83,8 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
+    	ConstantsIO.init();
+		RobotMap.updateConstants();
 		// This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove

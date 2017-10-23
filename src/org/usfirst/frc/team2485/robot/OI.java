@@ -102,13 +102,12 @@ public class OI {
 		Joystick_4.whenPressed(new setBoulderStager(StagerPosition.NEUTRAL));
 		Joystick_1.whenPressed(new setBoulderStager(StagerPosition.SHOOTING));
 		
-//		XBOX_RBUMPER.whenPressed(new QuickTurn(true));
-//		XBOX_RBUMPER.whenPressed(new QuickTurn(false)); // just as a reminder. See DriveWithControllers.	
+//		XBOX_LBUMPER.whenPressed(new QuickTurn(true));
+//		XBOX_LBUMPER.whenPressed(new QuickTurn(false)); // just as a reminder. See DriveWithControllers.	
 
-		XBOX_LBUMPER.whenPressed(new IntakeRollersOn(true));
-		XBOX_LBUMPER.whenReleased(new IntakeRollersOn(false));
+		XBOX_RBUMPER.whenPressed(new IntakeRollersOn(true));
+		XBOX_RBUMPER.whenReleased(new IntakeRollersOn(false));
 		
-		 //make start and stop for different spin up shooters
 		
 	}
 }

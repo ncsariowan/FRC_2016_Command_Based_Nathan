@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class IntakeArmWithControllers extends Command {
 
     public IntakeArmWithControllers() {
-    	requires(RobotMap.intakearm);
+    	requires(RobotMap.intakeArm);
     	setInterruptible(true);
     }
 
@@ -28,7 +28,7 @@ public class IntakeArmWithControllers extends Command {
     		pwm = 0;
 		}
     	
-    	RobotMap.intakearm.armByManual(pwm);
+    	RobotMap.intakeArm.armByManual(pwm);
     }
 
     // Make this return true when this Command no longer needs to run execute()
