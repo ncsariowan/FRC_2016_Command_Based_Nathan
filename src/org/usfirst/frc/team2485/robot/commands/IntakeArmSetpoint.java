@@ -1,34 +1,29 @@
 package org.usfirst.frc.team2485.robot.commands;
 
-import org.usfirst.frc.team2485.robot.OI;
 import org.usfirst.frc.team2485.robot.RobotMap;
-import org.usfirst.frc.team2485.robot.subsystems.IntakeArm;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class IntakeArmWithControllers extends Command {
+public class IntakeArmSetpoint extends Command {
 
-    public IntakeArmWithControllers() {
-    	requires(RobotMap.intakeArm);
-    	setInterruptible(true);
+	private double setpoint;
+	
+    public IntakeArmSetpoint(double setpointInput) {
+        requires(RobotMap.intakeArm);
+        
+        setpoint = setpointInput;
     }
 
+    // Called just before this Command runs the first time
     protected void initialize() {
+    	RobotMap.intakeArm.armBySetpoint(setpoint);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-    	double pwm = OI.JOYSTICK.getRawAxis(OI.JOYSTICK_Y_PORT);
-    	
-    	if (pwm >= IntakeArm.ARM_DEADBAND && pwm <= -IntakeArm.ARM_DEADBAND) {
-    		pwm = 0;
-		}
-    	
-    	RobotMap.intakeArm.armByManual(pwm);
     }
 
     // Make this return true when this Command no longer needs to run execute()

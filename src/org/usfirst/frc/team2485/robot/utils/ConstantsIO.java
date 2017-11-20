@@ -29,71 +29,10 @@ public class ConstantsIO {
 	public static double kF_Shooter;
 	public static double kShotRPS;
 	
-	public static double kP_Feeder;
-	public static double kI_Feeder;
-	public static double kD_Feeder;
-	public static double kF_Feeder;
-	public static double kFeederIPS;
+	public static double kP_IntakeArm;
+	public static double kI_IntakeArm;
+	public static double kD_IntakeArm;
 	
-	public static double kP_SWODCurrent;
-	public static double kI_SWODCurrent;
-	public static double kD_SWODCurrent;
-	public static double kF_SWODCurrent;
-
-	public static double kIntakeRollerPower;
-	
-	public static double kClimberPower;
-
-	public static double kP_DriveVelocity;
-	public static double kI_DriveVelocity;
-	public static double kD_DriveVelocity;
-	public static double kF_DriveVelocity;
-
-	public static double kP_DriveCurrent;
-	public static double kI_DriveCurrent;
-	public static double kD_DriveCurrent;
-	public static double kF_DriveCurrent;
-	
-	public static double kP_Distance;
-	public static double kI_Distance;
-	public static double kD_Distance;
-	
-	public static double kDownRamp_OverallVelocity;
-	public static double kUpRamp_OverallVelocity;
-	public static double kDownRamp_IndividualVelocity;
-	public static double kUpRamp_IndividualVelocity;
-
-	public static double kUpRamp_DriveThrottle;
-	public static double kDownRamp_DriveThrottle;
-	
-	public static double kP_DriveAngle;
-	public static double kI_DriveAngle;
-	public static double kD_DriveAngle;
-	
-	public static double kP_RotateTo;
-	public static double kI_RotateTo;
-	public static double kD_RotateTo;
-
-	public static double kUpRamp_DriveSteering;
-	public static double kDownRamp_DriveSteering;
-
-	public static double kP_DriveAngVel;
-	public static double kI_DriveAngVel;
-	public static double kD_DriveAngVel;
-	public static double kF_DriveAngVel;
-
-	public static double kSWODRPS;
-
-	public static double kP_GearArm;
-	public static double kI_GearArm;
-	public static double kD_GearArm;
-
-	public static double kP_GearArmRate;
-	public static double kI_GearArmRate;
-	public static double kD_GearArmRate;
-	public static double kF_GearArmRate;
-
-
 
 	public static void init() {
 
@@ -124,64 +63,10 @@ public class ConstantsIO {
 		kF_Shooter = Double.parseDouble(data.get("kF_Shooter"));
 		kShotRPS = Double.parseDouble(data.get("kShotRPS"));
 		
-		kP_Feeder = Double.parseDouble(data.get("kP_Feeder"));
-		kI_Feeder = Double.parseDouble(data.get("kI_Feeder"));
-		kD_Feeder = Double.parseDouble(data.get("kD_Feeder"));
-		kF_Feeder = Double.parseDouble(data.get("kF_Feeder"));
-		kFeederIPS = Double.parseDouble(data.get("kFeederIPS"));
+		kP_IntakeArm  = Double.parseDouble(data.get("kP_IntakeArm"));
+		kI_IntakeArm = Double.parseDouble(data.get("kI_IntakeArm"));
+		kD_IntakeArm = Double.parseDouble(data.get("kD_IntakeArm"));
 
-		kP_SWODCurrent = Double.parseDouble(data.get("kP_SWODCurrent"));
-		kI_SWODCurrent = Double.parseDouble(data.get("kI_SWODCurrent"));
-		kD_SWODCurrent = Double.parseDouble(data.get("kD_SWODCurrent"));
-		kF_SWODCurrent = Double.parseDouble(data.get("kF_SWODCurrent"));
-		kSWODRPS = Double.parseDouble(data.get("kSWODRPS"));
-
-		kIntakeRollerPower = Double.parseDouble(data.get("kIntakeRollerPower"));
-	
-		kClimberPower = Double.parseDouble(data.get("kClimberPower"));
-
-		kP_DriveVelocity = Double.parseDouble(data.get("kP_DriveVelocity"));
-		kI_DriveVelocity = Double.parseDouble(data.get("kI_DriveVelocity"));
-		kD_DriveVelocity = Double.parseDouble(data.get("kD_DriveVelocity"));
-		kF_DriveVelocity = Double.parseDouble(data.get("kF_DriveVelocity"));
-
-		kP_DriveCurrent = Double.parseDouble(data.get("kP_DriveCurrent"));
-		kI_DriveCurrent = Double.parseDouble(data.get("kI_DriveCurrent"));
-		kD_DriveCurrent = Double.parseDouble(data.get("kD_DriveCurrent"));
-		kF_DriveCurrent = Double.parseDouble(data.get("kF_DriveCurrent"));
-
-		kP_Distance = Double.parseDouble(data.get("kP_Distance"));
-		kI_Distance = Double.parseDouble(data.get("kI_Distance"));
-		kD_Distance = Double.parseDouble(data.get("kD_Distance"));
-
-		kUpRamp_DriveThrottle = Double.parseDouble(data.get("kUpRamp_DriveThrottle"));
-		kDownRamp_DriveThrottle = Double.parseDouble(data.get("kDownRamp_DriveThrottle"));
-
-		kDownRamp_OverallVelocity = Double.parseDouble(data.get("kDownRamp_OverallVelocity"));
-		kUpRamp_OverallVelocity = Double.parseDouble(data.get("kUpRamp_OverallVelocity"));
-
-		kDownRamp_IndividualVelocity = Double.parseDouble(data.get("kDownRamp_IndividualVelocity"));
-		kUpRamp_IndividualVelocity = Double.parseDouble(data.get("kUpRamp_IndividualVelocity"));
-
-		kP_DriveAngle = Double.parseDouble(data.get("kP_DriveAngle"));
-		kI_DriveAngle = Double.parseDouble(data.get("kI_DriveAngle"));
-		kD_DriveAngle = Double.parseDouble(data.get("kD_DriveAngle"));
-		
-		kP_RotateTo = Double.parseDouble(data.get("kP_RotateTo"));
-		kI_RotateTo = Double.parseDouble(data.get("kI_RotateTo"));
-		kD_RotateTo = Double.parseDouble(data.get("kD_RotateTo"));
-		
-		kP_DriveAngVel = Double.parseDouble(data.get("kP_DriveAngVel"));
-		kI_DriveAngVel = Double.parseDouble(data.get("kI_DriveAngVel"));
-		kD_DriveAngVel = Double.parseDouble(data.get("kD_DriveAngVel"));
-		kF_DriveAngVel = Double.parseDouble(data.get("kF_DriveAngVel"));
-		
-		kP_GearArm = Double.parseDouble(data.get("kP_GearArm"));
-		kI_GearArm = Double.parseDouble(data.get("kI_GearArm"));
-		kD_GearArm = Double.parseDouble(data.get("kD_GearArm"));
-
-		kUpRamp_DriveSteering = Double.parseDouble(data.get("kUpRamp_DriveSteering"));
-		kDownRamp_DriveSteering = Double.parseDouble(data.get("kDownRamp_DriveSteering"));
 		
 	}
 

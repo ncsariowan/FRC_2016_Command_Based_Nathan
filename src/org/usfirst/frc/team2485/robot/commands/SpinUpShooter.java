@@ -18,5 +18,7 @@ public class SpinUpShooter extends InstantCommand {
     protected void initialize() {
     	RobotMap.shooter.setSpeed(ConstantsIO.kShotRPS);
     }
+    
+    
 
 }

@@ -1,21 +1,28 @@
 package org.usfirst.frc.team2485.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
+import org.usfirst.frc.team2485.robot.commandGroups.IntakeBall;
+import org.usfirst.frc.team2485.robot.commandGroups.PrepForBatterShot;
+import org.usfirst.frc.team2485.robot.commandGroups.PrepForLongShot;
+import org.usfirst.frc.team2485.robot.commandGroups.StopIntakeBall;
 import org.usfirst.frc.team2485.robot.commands.DrivetrainWithControllers;
-import org.usfirst.frc.team2485.robot.commands.SetHood;
+import org.usfirst.frc.team2485.robot.commands.IntakeArmSetpoint;
+import org.usfirst.frc.team2485.robot.commands.IntakeRollersOff;
+import org.usfirst.frc.team2485.robot.commands.StopShooter;
 import org.usfirst.frc.team2485.robot.commands.setBoulderStager;
+import org.usfirst.frc.team2485.robot.subsystems.IntakeArm;
 import org.usfirst.frc.team2485.robot.subsystems.BoulderStager.StagerPosition;
-import org.usfirst.frc.team2485.robot.subsystems.Hood.HoodPosition;
-import org.usfirst.frc.team2485.robot.commands.IntakeRollersOn;
 
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+	
+	public static Joystick XBOX;
+	public static Joystick JOYSTICK;
 	
 	public static final int XBOX_A_PORT = 1;
 	public static final int XBOX_B_PORT = 2;
@@ -38,8 +45,11 @@ public class OI {
 	public static final int XBOX_RXJOYSTICK_PORT = 4;
 	public static final int XBOX_RYJOYSTICK_PORT = 5;
 	
-	public static Joystick XBOX;
-	public static Joystick Joystick;
+	public static final int JOYSTICK_X_PORT = 0;
+	public static final int JOYSTICK_Y_PORT = 1;
+	public static final int JOYSTICK_THROTTLE_PORT = 2;
+	public static final int JOYSTICK_XHAT_PORT = 3;
+	public static final int JOYSTICK_YHAT_PORT = 4;
 	
 	public static JoystickButton XBOX_UP;
 	public static JoystickButton XBOX_DOWN;
@@ -53,29 +63,28 @@ public class OI {
 	public static JoystickButton XBOX_RBUMPER;
 	public static JoystickButton XBOX_XBOX;
 	
-	public static JoystickButton Joystick_1;
-	public static JoystickButton Joystick_2;
-	public static JoystickButton Joystick_3;
-	public static JoystickButton Joystick_4;
-	public static JoystickButton Joystick_5;
-	public static JoystickButton Joystick_6;
-	public static JoystickButton Joystick_7;
-	public static JoystickButton Joystick_8;
-	public static JoystickButton Joystick_9;
-	public static JoystickButton Joystick_10;
-	public static JoystickButton Joystick_11;
-	public static JoystickButton Joystick_12;
+	public static JoystickButton JOYSTICK_1;
+	public static JoystickButton JOYSTICK_2;
+	public static JoystickButton JOYSTICK_3;
+	public static JoystickButton JOYSTICK_4;
+	public static JoystickButton JOYSTICK_TRIGGER;
+	public static JoystickButton JOYSTICK_6;
+	public static JoystickButton JOYSTICK_7;
+	public static JoystickButton JOYSTICK_8;
+	public static JoystickButton JOYSTICK_9;
+	public static JoystickButton JOYSTICK_10;
+	public static JoystickButton JOYSTICK_11;
+	public static JoystickButton JOYSTICK_12;
 	
 	/**
-	 *  For joysticks:4
-	 *  
+	 *  for joysticks:
 	 *  @see DrivetrainWithControllers
 	 *  @see IntakeArmWithControllers
 	 */
 	public static void init() {
 		
 		XBOX = new Joystick(0);
-		Joystick = new Joystick(1);
+		JOYSTICK = new Joystick(1);
 		
 		XBOX_UP = new JoystickButton(XBOX, XBOX_UP_PORT);
 		XBOX_DOWN = new JoystickButton(XBOX, XBOX_DOWN_PORT);
@@ -92,23 +101,39 @@ public class OI {
 		
 		XBOX_XBOX = new JoystickButton(XBOX, XBOX_XBOX_PORT);
 		
+		JOYSTICK_1 = new JoystickButton(JOYSTICK, 1); 
+		JOYSTICK_2 = new JoystickButton(JOYSTICK, 2);
+		JOYSTICK_3 = new JoystickButton(JOYSTICK, 3);
+		JOYSTICK_4 = new JoystickButton(JOYSTICK, 4);
+		JOYSTICK_TRIGGER = new JoystickButton(JOYSTICK, 5);
+		JOYSTICK_6 = new JoystickButton(JOYSTICK, 6);
+		JOYSTICK_7 = new JoystickButton(JOYSTICK, 7);
+		JOYSTICK_8 = new JoystickButton(JOYSTICK, 8);
+		JOYSTICK_9 = new JoystickButton(JOYSTICK, 9);
+		JOYSTICK_10 = new JoystickButton(JOYSTICK, 10);
+		JOYSTICK_11 = new JoystickButton(JOYSTICK, 11);
+		JOYSTICK_12 = new JoystickButton(JOYSTICK, 12);
+		
+		
 		////FUNCTIONS
+		XBOX_X.whenPressed(new IntakeBall());
+		XBOX_Y.whenReleased(new StopIntakeBall());
 		
-		Joystick_5.whenPressed(new SetHood(HoodPosition.HIGH_ANGLE));
-		Joystick_2.whenPressed(new SetHood(HoodPosition.STOWED));
-		Joystick_3.whenPressed(new SetHood(HoodPosition.LOW_ANGLE));
+//		XBOX_RBUMPER.whenPressed(new QuickTurn(true));
+//		XBOX_RBUMPER.whenReleased(new QuickTurn(false)); // just as a reminder. @see DriveWithControllers.			
 		
-		Joystick_6.whenPressed(new setBoulderStager(StagerPosition.INTAKE));
-		Joystick_4.whenPressed(new setBoulderStager(StagerPosition.NEUTRAL));
-		Joystick_1.whenPressed(new setBoulderStager(StagerPosition.SHOOTING));
+		JOYSTICK_1.whenPressed(new PrepForLongShot());
+		JOYSTICK_2.whenPressed(new PrepForBatterShot());
 		
-//		XBOX_LBUMPER.whenPressed(new QuickTurn(true));
-//		XBOX_LBUMPER.whenPressed(new QuickTurn(false)); // just as a reminder. See DriveWithControllers.	
-
-		XBOX_RBUMPER.whenPressed(new IntakeRollersOn(true));
-		XBOX_RBUMPER.whenReleased(new IntakeRollersOn(false));
+		JOYSTICK_TRIGGER.whenPressed(new setBoulderStager(StagerPosition.SHOOTING));
+		JOYSTICK_6.whenPressed(new StopShooter());
 		
-		
+		JOYSTICK_7.whenPressed(new IntakeRollersOff());
+		JOYSTICK_8.whenPressed(new IntakeArmSetpoint(IntakeArm.FLOOR_POSITION));
+		JOYSTICK_9.whenPressed(new IntakeArmSetpoint(IntakeArm.LOW_NO_INTAKE_POSITION));
+		JOYSTICK_10.whenPressed(new IntakeArmSetpoint(IntakeArm.INTAKE_POSITION));
+		JOYSTICK_11.whenPressed(new IntakeArmSetpoint(IntakeArm.PORTCULLIS_POSITION));
+		JOYSTICK_12.whenPressed(new IntakeArmSetpoint(IntakeArm.FULL_UP_POSITION));
 	}
 }
 
